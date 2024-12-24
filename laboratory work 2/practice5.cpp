@@ -3,18 +3,18 @@
 #include <functional> 
 #include <cmath>
 #include <locale.h>
-// Функция для отрисовки графика
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void drawGraph(sf::RenderWindow& window, std::function<float(float)> func, float xMin, float xMax, float scaleX, float scaleY, sf::Color color) {
     sf::VertexArray graph(sf::LinesStrip);
 
     for (float x = xMin; x <= xMax; x += 0.1f) {
-        float y = func(x); // Вычисление значения функции
+        float y = func(x); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        // Преобразование координат в экранные
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         float screenX = 400 + x * scaleX;
         float screenY = 300 - y * scaleY;
 
-        // Добавление точки в массив вершин
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         graph.append(sf::Vertex(sf::Vector2f(screenX, screenY), color));
     }
 
@@ -22,21 +22,21 @@ void drawGraph(sf::RenderWindow& window, std::function<float(float)> func, float
 }
 
 int main() {
-    //Создание окна
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     sf::RenderWindow window(sf::VideoMode(800, 600), "Console app to display graphs");
     setlocale(LC_ALL, "Russian");
-    // Переменная для хранения пользовательской точки
-    sf::CircleShape userPoint(5); // Радиус 5 пикслелей
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    sf::CircleShape userPoint(5); // пїЅпїЅпїЅпїЅпїЅпїЅ 5 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     userPoint.setFillColor(sf::Color::Red);
-    bool userPointExists = false; // Переменная  для проверки существования пользовательской точки
+    bool userPointExists = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-    // 1 _ Загрузка шрифта 
+    // 1 _ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
     sf::Font font;
     if (!font.loadFromFile("arial.ttf")) {
         return -1;
     }
-    // 2 _ Текст для отображения координат точки 
-    // Размер текста 20, положение текста (10,10), цвет белый. Текст храните в переменной coordinatesText
+    // 2 _ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 20, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (10,10), пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ coordinatesText
     sf::Text coordinatesText;
     coordinatesText.setFont(font);
     coordinatesText.setCharacterSize(20);
@@ -48,17 +48,17 @@ int main() {
     numberZone.setFillColor(sf::Color::White);
     numberZone.setPosition(10, 100);
 
-    // Оси X и Y
+    // пїЅпїЅпїЅ X пїЅ Y
     sf::VertexArray xAxis(sf::Lines, 2);
-    xAxis[0].position = sf::Vector2f(50, 300); // Начало оси X
-    xAxis[0].color = sf::Color::White; // Цвет оси
-    xAxis[1].position = sf::Vector2f(750, 300); // Конец оси X
+    xAxis[0].position = sf::Vector2f(50, 300); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ X
+    xAxis[0].color = sf::Color::White; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+    xAxis[1].position = sf::Vector2f(750, 300); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ X
     xAxis[1].color = sf::Color::White;
 
     sf::VertexArray yAxis(sf::Lines, 2);
-    yAxis[0].position = sf::Vector2f(400, 50); // Начало оси Y
-    yAxis[0].color = sf::Color::White; // Цвет оси
-    yAxis[1].position = sf::Vector2f(400, 550); // Конец оси Y
+    yAxis[0].position = sf::Vector2f(400, 50); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Y
+    yAxis[0].color = sf::Color::White; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+    yAxis[1].position = sf::Vector2f(400, 550); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Y
     yAxis[1].color = sf::Color::White;
 
     while (window.isOpen()) {
@@ -67,78 +67,79 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            // Проверка клика мышью
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
-                    // Получение позиции клика
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
-                    // Преобразование экранных координат в "математические"
-                    float mathX = (mousePos.x - 400) / 20.0f; // Масштаб 30 по X
-                    float mathY = -(mousePos.y - 300) / 20.0f; // Масштаб 100 по Y
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+                    float mathX = (mousePos.x - 400) / 20.0f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 30 пїЅпїЅ X
+                    float mathY = -(mousePos.y - 300) / 20.0f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 100 пїЅпїЅ Y
 
-                    // Установка новой пользовательсокой точки
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                     userPoint.setPosition(mousePos.x - userPoint.getRadius(), mousePos.y - userPoint.getRadius());
-                    userPointExists = true; // Помечаем что точка существует
+                    userPointExists = true; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-
-                    // 3 _ Логика проверки  точки по переменным mathX и mathY !
-                    if (mathY == 2 or mathY == mathX * mathX - 2 * mathX - 6) {
-                        numberZone.setString("Boderline");
+                    // 3 _ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ mathX пїЅ mathY !
+                    if (mathY == mathX * mathX - 8 or mathY == 2 * mathX - 1) {
+                        numberZone.setString("Borderline");
                     }
                     else {
-                        if (mathY > mathX * mathX - 2 * mathX - 6) {
-                            if (mathY < 2) {
-                                numberZone.setString("Zone 3");
-                            }
-                            else {
-                                numberZone.setString("Zone 5");
-                            }
-                        }
-                        else {
-                            if (mathY < 2) {
-                                numberZone.setString("Zone 2");
-                            }
-                            else {
-                                if (mathX > 2) {
-                                    numberZone.setString("Zone 4");
+                        if (mathY < mathX * mathX - 8) {
+                            if (mathY < 2 * mathX - 1) {
+                                if (mathX > 10.0 or mathY > 6.0) {
+                                    numberZone.setString("Zone 5");
                                 }
                                 else {
                                     numberZone.setString("Zone 1");
                                 }
                             }
+                            else {
+                                numberZone.setString("Zone 4");
+                            }
+                        }
+                        else {
+                            if (mathY < 2 * mathX - 1) {
+                                numberZone.setString("Zone 2");
+                            }
+                            else {
+                                numberZone.setString("Zone 3");
+                            }
                         }
                     }
-                    // Обновление текста с координатами точки 
+
+
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
                     coordinatesText.setString("Coordinations: (" + std::to_string(mathX) + ", " + std::to_string(mathY) + ")");
                 }
             }
         }
 
 
-        // 4 _ Очистка экрана 
+        // 4 _ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
         window.clear();
 
-        // Отрисовка осей
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         window.draw(xAxis);
         window.draw(yAxis);
 
 
 
-        // 5 _  Отрисовка графика y1 = x*x-8
-        drawGraph(window, [](float x) { return x * x - 8; }, -12, 12, 20, 20, sf::Color::Blue);
+        // 5 _  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ y1 = x*x-8
+        drawGraph(window, [](float x) { return x * x - 8; }, -10, 10, 30, 10, sf::Color::Red);
 
-        // 5 _   Отрисовка графика y2 = 2*x-1
-        drawGraph(window, [](float x) { return 2 * x - 1; }, -12, 12, 20, 20, sf::Color::Red);
+        // 5 _   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ y2 = 2*x-1
+        drawGraph(window, [](float x) { return 2 * x - 1; }, -10, 10, 30, 10, sf::Color::Blue);
 
-        // Отрисовка пользовательской точки, если она существует
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (userPointExists) {
             window.draw(userPoint);
             window.draw(coordinatesText);
             window.draw(numberZone);
         }
 
-        // Отображение нового кадра
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         window.display();
     }
     return 0;
