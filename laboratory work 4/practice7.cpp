@@ -2,54 +2,61 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
-#include <cmath> // Для abs
+#include <cmath>
+#include <set>
 
-// Функция для получения отрицательных элементов из массива
-std::vector<int> getNegativeElements(const std::vector<int>& arrA) {
-    std::vector<int> arrB;
-    for (int val : arrA) {
+
+// Функция для получения отрицательных элементов из массива и их вывода
+std::vector<int> getNegativeElements(const std::vector<int>& numbers) {
+    std::vector<int> negativeNumbers;
+    std::cout << "Negative elements (Array B): ";
+    for (int val : numbers) {
         if (val < 0) {
-            arrB.push_back(val);
+            negativeNumbers.push_back(val);
+            std::cout << val << " ";
         }
     }
-    return arrB;
+    std::cout << std::endl;
+    return negativeNumbers;
 }
+
+// Функция для ввода массива целых чисел
+std::vector<int> inputArray() {
+    int size;
+    std::cout << "Enter size of array: ";
+    std::cin >> size;
+    std::vector<int> arr(size);
+    std::cout << "Enter elements of array:" << std::endl;
+    for (int i = 0; i < size; ++i) {
+        std::cin >> arr[i];
+    }
+    return arr;
+}
+
+
 
 // Функция для нахождения симметрической разности двух множеств
-std::vector<int> symmetricDifference(const std::vector<int>& arrA, const std::vector<int>& arrB) {
-    std::vector<int> symmetricDiff;
+std::vector<int> symmetricDifference(const std::set<int>& setA, const std::set<int>& setB) {
+    std::vector<int> symDiff;
+    std::set_symmetric_difference(setA.begin(), setA.end(), setB.begin(), setB.end(), std::back_inserter(symDiff));
 
-    // Копируем элементы из A, которых нет в B
-    for (int valA : arrA) {
-        bool found = false;
-        for (int valB : arrB) {
-            if (valA == valB) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            symmetricDiff.push_back(valA);
-        }
-    }
-
-    // Копируем элементы из B, которых нет в A
-    for (int valB : arrB) {
-        bool found = false;
-        for (int valA : arrA) {
-            if (valB == valA) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            symmetricDiff.push_back(valB);
-        }
-    }
-
-    return symmetricDiff;
+    return symDiff;
 }
 
+// Функция для ввода множества целых чисел
+std::set<int> inputSet() {
+    int size;
+    std::cout << "Enter the size of the set: ";
+    std::cin >> size;
+    std::set<int> s;
+    std::cout << "Enter the elements of the set:" << std::endl;
+    for (int i = 0; i < size; ++i) {
+        int val;
+        std::cin >> val;
+        s.insert(val); // insert to make sure elements are unique
+    }
+    return s;
+}
 
 // Функция для вычисления среднего арифметического вектора
 double calculateAverage(const std::vector<int>& arr) {
@@ -61,19 +68,16 @@ double calculateAverage(const std::vector<int>& arr) {
 
 int main() {
     // Задание 1: Получить массив B из отрицательных элементов массива A
-    std::vector<int> arrA = { 1, -2, 3, -4, 5, -6, 7, -8, 9, -10 };
-    std::vector<int> arrB = getNegativeElements(arrA);
-
-    std::cout << "Array B (negative elements from A): ";
-    for (int val : arrB) {
-        std::cout << val << " ";
-    }
-    std::cout << std::endl;
+    std::cout << "Enter the data for array A:" << std::endl;
+    std::vector<int> numbers = inputArray();
+    std::vector<int> negativeNumbers = getNegativeElements(numbers);
 
 
     // Задание 2: Получить симметрическую разность A и B и ее среднее арифметическое
-    std::vector<int> setA = { 1, 2, 3, 4, 5 };
-    std::vector<int> setB = { 3, 4, 5, 6, 7 };
+    std::cout << "Enter data for set A:" << std::endl;
+    std::set<int> setA = inputSet();
+    std::cout << "Enter data for set B:" << std::endl;
+    std::set<int> setB = inputSet();
 
     std::vector<int> symDiff = symmetricDifference(setA, setB);
     double avg = calculateAverage(symDiff);
@@ -83,9 +87,8 @@ int main() {
         std::cout << val << " ";
     }
     std::cout << std::endl;
-    std::cout << "Average of the symmetric difference: " << avg << std::endl;
+    std::cout << "Arithmetic mean of symmetric difference: " << avg << std::endl;
 
 
     return 0;
 }
-
